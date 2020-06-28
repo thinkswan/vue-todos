@@ -1,6 +1,7 @@
 {
   "name": "vue-todos",
   "version": "0.1.0",
+  "description": "A Vue.js todo app.",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

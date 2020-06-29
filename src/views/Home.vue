@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Header />
     <AddTodo @add-item="addItem" />
     <TodoList :todos="todos" @delete-item="deleteItem" />
   </div>
@@ -8,7 +7,6 @@
 
 <script>
 import axios from "axios";
-import Header from "@/components/layouts/Header";
 import AddTodo from "@/components/AddTodo";
 import TodoList from "@/components/TodoList";
 
@@ -16,7 +14,7 @@ const API_BASE = "https://jsonplaceholder.typicode.com/todos";
 
 export default {
   name: "Home",
-  components: { Header, AddTodo, TodoList },
+  components: { AddTodo, TodoList },
   data() {
     return {
       todos: []
@@ -70,19 +68,6 @@ export default {
 body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 
 .button {

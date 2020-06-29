@@ -7,41 +7,54 @@
 </template>
 
 <script>
+import axios from "axios";
 import Header from "./components/layouts/Header";
 import AddTodo from "./components/AddTodo";
 import TodoList from "./components/TodoList";
+
+const API_BASE = "https://jsonplaceholder.typicode.com/todos";
 
 export default {
   name: "App",
   components: { Header, AddTodo, TodoList },
   data() {
     return {
-      todos: [
-        {
-          id: 1,
-          title: "Todo one",
-          completed: false
-        },
-        {
-          id: 2,
-          title: "Todo two",
-          completed: true
-        },
-        {
-          id: 3,
-          title: "Todo three",
-          completed: false
-        }
-      ]
+      todos: []
     };
   },
   methods: {
-    addItem(newTodo) {
-      this.todos = [...this.todos, newTodo];
+    async addItem(newTodo) {
+      try {
+        const { title, completed } = newTodo;
+
+        const response = await axios.post(API_BASE, {
+          title,
+          completed
+        });
+
+        this.todos = [...this.todos, response.data];
+      } catch (error) {
+        console.error(error);
+      }
     },
 
-    deleteItem(id) {
-      this.todos = this.todos.filter(item => item.id !== id);
+    async deleteItem(id) {
+      try {
+        await axios.delete(`${API_BASE}/${id}`);
+
+        this.todos = this.todos.filter(item => item.id !== id);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+  async created() {
+    try {
+      const response = await axios.get(`${API_BASE}?_limit=5`);
+
+      this.todos = response.data;
+    } catch (error) {
+      console.error(error);
     }
   }
 };

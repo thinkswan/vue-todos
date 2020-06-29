@@ -40,4 +40,9 @@ const router = new VueRouter({
   routes
 });
 
+// Update page title when switching routes
+router.afterEach(to => {
+  document.title = to.meta.pageTitle + " | vue-todos";
+});
+
 export default router;

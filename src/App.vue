@@ -1,15 +1,17 @@
 <template>
   <div id="app">
+    <Header />
     <TodoList :todos="todos" @delete-item="deleteItem" />
   </div>
 </template>
 
 <script>
+import Header from "./components/layouts/Header";
 import TodoList from "./components/TodoList";
 
 export default {
   name: "App",
-  components: { TodoList },
+  components: { Header, TodoList },
   data() {
     return {
       todos: [

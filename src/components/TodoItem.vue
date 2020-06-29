@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="todo-item" :class="{ 'is-complete': todo.completed }">
     <p>{{ todo.title }}</p>
   </div>
 </template>
@@ -11,4 +11,24 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.todo-item {
+  background: #f4f4f4;
+  padding: 10px;
+  border-bottom: 1px #ccc dotted;
+}
+
+.is-complete {
+  text-decoration: line-through;
+}
+
+.delete-button {
+  background-color: #f00;
+  color: #fff;
+  border: none;
+  padding: 5px 9px;
+  border-radius: 50%;
+  cursor: pointer;
+  float: right;
+}
+</style>

@@ -1,8 +1,11 @@
 <template>
   <div class="todo-item" :class="{ 'is-complete': todo.completed }">
     <p>
-      <input type="checkbox" :checked="todo.completed" @change="markComplete" />
+      <input type="checkbox" :checked="todo.completed" @change="completeItem" />
       {{ todo.title }}
+      <button class="delete-button" @click="$emit('delete-item', todo.id)">
+        &times;
+      </button>
     </p>
   </div>
 </template>
@@ -12,7 +15,7 @@ export default {
   name: "TodoItem",
   props: ["todo"],
   methods: {
-    markComplete() {
+    completeItem() {
       this.todo.completed = !this.todo.completed;
     }
   }
